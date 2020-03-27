@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.36% </span>
+                <span class="strong">86.96% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>19/22</span>
+                <span class='fraction'>20/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.5% </span>
+                <span class="strong">90% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>7/8</span>
+                <span class='fraction'>9/10</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">89.47% </span>
+                <span class="strong">90% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>17/19</span>
+                <span class='fraction'>18/20</span>
             </div>
         
             
@@ -93,9 +93,12 @@
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">15x</span>
@@ -128,40 +131,43 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const buildOperators = require('./operators')
 &nbsp;
 const handleSchema = (schema, knex) =&gt; {
-  const operatorHandler = buildOperators(knex)
+  if (schema) {
+    const operatorHandler = buildOperators(knex)
 &nbsp;
-  Object.entries(schema).forEach(([columnOrOperator, elementSchema]) =&gt; {
-    // $and $or $not, query operators
-    switch (columnOrOperator) {
-      case '$and':
-        knex.andWhere((wb) =&gt; handleSchema(elementSchema, wb))
-        break
-      case '$or':
-        knex.orWhere((wb) =&gt; handleSchema(elementSchema, wb))
-        break
-<span class="branch-2 cbranch-no" title="branch not covered" >      case '$not':</span>
-<span class="cstat-no" title="statement not covered" >        knex.orNot(<span class="fstat-no" title="function not covered" >(w</span>b) =&gt; <span class="cstat-no" title="statement not covered" >handleSchema(elementSchema, wb))</span></span>
-<span class="cstat-no" title="statement not covered" >        break</span>
-      default:
-        break
-    }
+    Object.entries(schema).forEach(([columnOrOperator, elementSchema]) =&gt; {
+      // $and $or $not, query operators
+      switch (columnOrOperator) {
+        case '$and':
+          knex.andWhere((wb) =&gt; handleSchema(elementSchema, wb))
+          break
+        case '$or':
+          knex.orWhere((wb) =&gt; handleSchema(elementSchema, wb))
+          break
+<span class="branch-2 cbranch-no" title="branch not covered" >        case '$not':</span>
+<span class="cstat-no" title="statement not covered" >          knex.orNot(<span class="fstat-no" title="function not covered" >(w</span>b) =&gt; <span class="cstat-no" title="statement not covered" >handleSchema(elementSchema, wb))</span></span>
+<span class="cstat-no" title="statement not covered" >          break</span>
+        default:
+          break
+      }
 &nbsp;
-    if (Array.isArray(elementSchema)) {
-      // Array value, use $in operator
-      operatorHandler.bind('$in', columnOrOperator, elementSchema)
-    } else if (elementSchema instanceof Object) {
-      // Object, expand operators
-      Object.entries(elementSchema).forEach(([operator, value]) =&gt; {
-        operatorHandler.bind(operator, columnOrOperator, value)
-      })
-    } else {
-      operatorHandler.bind('$eq', columnOrOperator, elementSchema)
-    }
-  })
+      if (Array.isArray(elementSchema)) {
+        // Array value, use $in operator
+        operatorHandler.bind('$in', columnOrOperator, elementSchema)
+      } else if (elementSchema instanceof Object) {
+        // Object, expand operators
+        Object.entries(elementSchema).forEach(([operator, value]) =&gt; {
+          operatorHandler.bind(operator, columnOrOperator, value)
+        })
+      } else {
+        operatorHandler.bind('$eq', columnOrOperator, elementSchema)
+      }
+    })
+  }
 }
 &nbsp;
 module.exports = handleSchema
@@ -172,7 +178,7 @@ module.exports = handleSchema
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Mar 27 2020 10:30:45 GMT-0300 (Brasilia Standard Time)
+                at Fri Mar 27 2020 11:17:10 GMT-0300 (Brasilia Standard Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

@@ -49,4 +49,34 @@ describe('Select tests', () => {
       },
     ])
   })
+
+  it('Should return dummies count', async () => {
+    const dummyQuery = await knexClient('dummies').jsonQuery({
+      select: [
+        {
+          $count: ['dummyId as dummyCount', 'dummyName as nameCount'],
+        },
+      ],
+      first: true,
+    })
+
+    expect(dummyQuery).toMatchObject({ dummyCount: 5, nameCount: 5 })
+  })
+
+  it('Should return dummies distinct valueA', async () => {
+    const dummyQuery = await knexClient('dummies').jsonQuery({
+      select: [
+        {
+          $distinct: 'valueA',
+        },
+      ],
+    })
+
+    expect(dummyQuery).toMatchObject([
+      { valueA: 10 },
+      { valueA: 25 },
+      { valueA: 68 },
+      { valueA: 24 },
+    ])
+  })
 })

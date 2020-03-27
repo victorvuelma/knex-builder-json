@@ -28,7 +28,7 @@ const dummies = {
     dummyName: 'Dummy D',
     date: new Date('2019-08-01').toISOString(),
     createdAt: new Date('2019-10-01').toISOString(),
-    valueA: 89,
+    valueA: 24,
     valueB: 23,
   },
   dummyE: {
