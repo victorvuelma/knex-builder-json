@@ -9,11 +9,11 @@ describe('Select tests', () => {
   beforeAll(async () => {
     attachJsonQuery()
 
-    await prepareDatabase(knexClient)
+    return prepareDatabase(knexClient)
   })
 
   afterAll(async () => {
-    knexClient.destroy()
+    return knexClient.destroy()
   })
 
   it('Should return dummies id and name of dummy B', async () => {

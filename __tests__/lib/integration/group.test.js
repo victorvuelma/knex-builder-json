@@ -3,11 +3,15 @@ const { attachJsonQuery } = require('../../../lib')
 const knexClient = require('../../util/database/sqlite')
 const prepareDatabase = require('../../util/database/table')
 
-describe('Select tests', () => {
+describe('Group tests', () => {
   beforeAll(async () => {
     attachJsonQuery()
 
-    await prepareDatabase(knexClient)
+    return prepareDatabase(knexClient)
+  })
+
+  afterAll(async () => {
+    return knexClient.destroy()
   })
 
   it('Should return dummyCount groupBy valueA', async () => {
