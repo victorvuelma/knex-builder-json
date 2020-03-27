@@ -79,4 +79,38 @@ describe('Select tests', () => {
       { valueA: 24 },
     ])
   })
+
+  it('Should return dummies distinct valueA and valueB', async () => {
+    const dummyQuery = await knexClient('dummies').jsonQuery({
+      select: [
+        {
+          $distinct: ['valueA', 'valueB'],
+        },
+      ],
+    })
+
+    expect(dummyQuery).toMatchObject([
+      { valueA: 10, valueB: 85 },
+      { valueA: 25, valueB: 16 },
+      { valueA: 68, valueB: 16 },
+      { valueA: 24, valueB: 23 },
+      { valueA: 24, valueB: 56 },
+    ])
+  })
+
+  it('Should return all fields (invalid op) from dummy with dummyId 1', async () => {
+    const dummyQuery = await knexClient('dummies').jsonQuery({
+      where: {
+        dummyId: 1,
+      },
+      select: [
+        {
+          $io: 'invalidOp',
+        },
+      ],
+      first: true,
+    })
+
+    expect(dummyQuery).toMatchObject(dummies.dummyA)
+  })
 })
