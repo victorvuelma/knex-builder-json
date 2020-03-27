@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+  - '8'
+  - '9'
+  - '10'
+  - '11'
+  - '12'
+install:
+  - npm install -q --no-color --no-progress
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+script:
+  - npm run lint
+  - npm run test
+after_success:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+sudo: false
+deploy:
+  on:
+    branch: master
+    tags: true
+    repo: victorvuelma/knex-builder-json

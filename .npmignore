@@ -1,0 +1,10 @@
+#tests
+__tests__/
+
+#build tools
+.editorconfig
+.eslintrc.js
+.travis.yml
+.prettierrc
+database.sqlite
+yarn.lock

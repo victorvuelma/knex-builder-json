@@ -3,11 +3,20 @@
   "version": "0.1.0",
   "main": "lib/index.js",
   "repository": "https://github.com/victorvuelma/knex-builder-json",
+  "homepage": "https://github.com/victorvuelma/knex-builder-json",
+  "description": "Knex extension to build commands usign a JSON.",
   "author": "victorvuelma",
   "license": "MIT",
   "scripts": {
-    "test": "jest --detectOpenHandles"
+    "lint": "eslint **/*.js",
+    "lint:fix": "eslint --fix **/*.js",
+    "test": "jest test"
   },
+  "keywords": [
+    "knex",
+    "builder",
+    "json"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
