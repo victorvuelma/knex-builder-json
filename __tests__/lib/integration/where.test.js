@@ -128,10 +128,38 @@ describe('Where tests', () => {
     expect(dummyQuery).toMatchObject([dummies.dummyA, dummies.dummyE])
   })
 
+  it('Should return dummy with valueA 24 and not dummyId 5', async () => {
+    const dummyQuery = await knexClient('dummies').jsonQuery({
+      where: {
+        valueA: 24,
+        $not: {
+          dummyId: 5,
+        },
+      },
+    })
+
+    expect(dummyQuery).toMatchObject([dummies.dummyD])
+  })
+
+  it('Should return dummy with valueA not 24', async () => {
+    const dummyQuery = await knexClient('dummies').jsonQuery({
+      where: {
+        valueA: { $not: 24 },
+      },
+    })
+
+    expect(dummyQuery).toMatchObject([
+      dummies.dummyA,
+      dummies.dummyB,
+      dummies.dummyC,
+    ])
+  })
+
   it('Should return no dummies', async () => {
     const dummyQuery = await knexClient('dummies').jsonQuery({
       where: {
         dummyId: [],
+        dummyName: { $iO: 'invalidOperator' },
       },
     })
 
