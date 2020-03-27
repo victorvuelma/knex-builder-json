@@ -1,28 +1,23 @@
 const { attachJsonQuery } = require("../../../lib");
 
-const dbClient = require("../../util/dbClient");
-const { createTables, dropTables } = require("../../util/tables");
-const entities = require("../../util/entities");
-const { dummies } = entities;
+const knexClient = require("../../util/database/sqlite");
+const prepareDatabase = require("../../util/database/table");
 
-const prepareTable = async () => {
-  await dropTables(dbClient);
-  await createTables(dbClient);
-
-  Object.entries(entities).forEach(async ([table, values]) => {
-    await dbClient(table).insert(Object.values(values));
-  });
-};
+const { dummies } = require("../../util/entities");
 
 describe("Where tests", () => {
   beforeAll(async () => {
     attachJsonQuery();
 
-    await prepareTable();
+    await prepareDatabase(knexClient);
+  });
+
+  afterAll(async () => {
+    knexClient.destroy();
   });
 
   it("Should return dummy with dummyId 1", async () => {
-    const dummyQuery = await dbClient("dummies").jsonQuery({
+    const dummyQuery = await knexClient("dummies").jsonQuery({
       where: {
         dummyId: 1
       }
@@ -31,7 +26,7 @@ describe("Where tests", () => {
   });
 
   it("Should return dummies with dummyId [2, 3]", async () => {
-    const dummyQuery = await dbClient("dummies").jsonQuery({
+    const dummyQuery = await knexClient("dummies").jsonQuery({
       where: {
         dummyId: [2, 3]
       }
@@ -40,7 +35,7 @@ describe("Where tests", () => {
   });
 
   it("Should return dummy with dummyId gt 2 and lt 4", async () => {
-    const dummyQuery = await dbClient("dummies").jsonQuery({
+    const dummyQuery = await knexClient("dummies").jsonQuery({
       where: {
         dummyId: {
           $gt: 2,
@@ -52,7 +47,7 @@ describe("Where tests", () => {
   });
 
   it("Should return dummies with dummyId gte to 1 and lte to 3", async () => {
-    const dummyQuery = await dbClient("dummies").jsonQuery({
+    const dummyQuery = await knexClient("dummies").jsonQuery({
       where: {
         dummyId: {
           $gte: 1,
@@ -69,7 +64,7 @@ describe("Where tests", () => {
   });
 
   it("Should return dummies with dummyId [1, 3] or dummyName Dummy B", async () => {
-    const dummyQuery = await dbClient("dummies").jsonQuery({
+    const dummyQuery = await knexClient("dummies").jsonQuery({
       where: {
         dummyId: { $in: [1, 3] },
         $or: { dummyName: "Dummy B" }
@@ -84,7 +79,7 @@ describe("Where tests", () => {
   });
 
   it("Should return dummies with dummyId 5 and dummyName Dummy E", async () => {
-    const dummyQuery = await dbClient("dummies").jsonQuery({
+    const dummyQuery = await knexClient("dummies").jsonQuery({
       where: {
         dummyId: { $eq: 5 },
         $and: { dummyName: "Dummy E" }
@@ -95,7 +90,7 @@ describe("Where tests", () => {
   });
 
   it("Should return no dummies. dummyId = null", async () => {
-    const dummyQuery = await dbClient("dummies").jsonQuery({
+    const dummyQuery = await knexClient("dummies").jsonQuery({
       where: {
         dummyId: null
       }
@@ -105,7 +100,7 @@ describe("Where tests", () => {
   });
 
   it("Should return all dummies. dummyId not null null", async () => {
-    const dummyQuery = await dbClient("dummies").jsonQuery({
+    const dummyQuery = await knexClient("dummies").jsonQuery({
       where: {
         dummyId: { $not: null }
       }
@@ -121,7 +116,7 @@ describe("Where tests", () => {
   });
 
   it("Should return dummies with dummyName like A or E", async () => {
-    const dummyQuery = await dbClient("dummies").jsonQuery({
+    const dummyQuery = await knexClient("dummies").jsonQuery({
       where: {
         dummyName: { $like: "%A%" },
         $or: {
@@ -134,7 +129,7 @@ describe("Where tests", () => {
   });
 
   it("Should return no dummies", async () => {
-    const dummyQuery = await dbClient("dummies").jsonQuery({
+    const dummyQuery = await knexClient("dummies").jsonQuery({
       where: {
         dummyId: []
       }
