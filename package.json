@@ -1,7 +1,7 @@
 {
   "name": "knex-builder-json",
   "version": "0.1.0",
-  "main": "index.js",
+  "main": "lib/index.js",
   "repository": "https://github.com/victorvuelma/knex-builder-json",
   "author": "victorvuelma",
   "license": "MIT",
