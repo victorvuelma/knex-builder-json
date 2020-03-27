@@ -1,5 +1,5 @@
-const dummies = require("./dummies");
+const dummies = require('./dummies')
 
 module.exports = {
-  dummies
-};
+  dummies,
+}

@@ -1,14 +1,14 @@
-const Knex = require("knex");
+const Knex = require('knex')
 
-const { attachJsonQuery } = require("../../lib");
+const { attachJsonQuery } = require('../../lib')
 
-describe("Knex Json Query", () => {
-  it("Should Attach to Knex", () => {
-    const extend = jest.spyOn(Knex.QueryBuilder, "extend");
+describe('Knex Json Query', () => {
+  it('Should Attach to Knex', () => {
+    const extend = jest.spyOn(Knex.QueryBuilder, 'extend')
 
-    attachJsonQuery();
+    attachJsonQuery()
 
-    expect(extend).toBeCalledTimes(1);
-    expect(extend).toBeCalledWith("jsonQuery", expect.any(Function));
-  });
-});
+    expect(extend).toBeCalledTimes(1)
+    expect(extend).toBeCalledWith('jsonQuery', expect.any(Function))
+  })
+})

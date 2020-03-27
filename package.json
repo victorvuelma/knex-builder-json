@@ -1,6 +1,6 @@
 {
   "name": "knex-builder-json",
-  "version": "0.1",
+  "version": "0.1.0",
   "main": "index.js",
   "repository": "https://github.com/victorvuelma/knex-builder-json",
   "author": "victorvuelma",
@@ -16,7 +16,7 @@
   },
   "lint-staged": {
     "*.{js,ts,md}": [
-      "standard --fix"
+      "eslint --fix"
     ]
   },
   "dependencies": {
@@ -25,10 +25,15 @@
   "devDependencies": {
     "@sucrase/jest-plugin": "^2.0.0",
     "@types/jest": "^25.1.4",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-prettier": "^3.1.2",
     "husky": "^4.2.3",
     "jest": "^25.2.2",
     "lint-staged": "^10.0.9",
-    "sqlite3": "^4.1.1",
-    "standard": "^14.3.3"
+    "prettier": "^2.0.2",
+    "sqlite3": "^4.1.1"
   }
 }

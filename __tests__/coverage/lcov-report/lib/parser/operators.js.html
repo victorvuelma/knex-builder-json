@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">97.62% </span>
+                <span class="strong">95.45% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>41/42</span>
+                <span class='fraction'>21/22</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>22/22</span>
+                <span class='fraction'>12/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.88% </span>
+                <span class="strong">95.24% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>31/32</span>
+                <span class='fraction'>20/21</span>
             </div>
         
             
@@ -140,15 +140,15 @@
 <a name='L81'></a><a href='#L81'>81</a>
 <a name='L82'></a><a href='#L82'>82</a>
 <a name='L83'></a><a href='#L83'>83</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -156,7 +156,7 @@
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -164,7 +164,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -172,27 +172,27 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">20x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -223,58 +223,58 @@
 <span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">class Operators {
   constructor(knex) {
-    this.knex = knex;
+    this.knex = knex
   }
 &nbsp;
-  relationalOperator = (column, operator, value) =&gt; {
-    return this.knex.where(column, operator, value);
-  };
+  relationalOperator(column, operator, value) {
+    return this.knex.where(column, operator, value)
+  }
 &nbsp;
-  equalOperator = (column, value) =&gt; {
+  equalOperator(column, value) {
     if (value === null) {
-      return this.knex.whereNull(column);
+      return this.knex.whereNull(column)
     }
 &nbsp;
-    return this.knex.where(column, value);
-  };
+    return this.knex.where(column, value)
+  }
 &nbsp;
-  notOperator = (column, value) =&gt; {
+  notOperator(column, value) {
     <span class="missing-if-branch" title="else path not taken" >E</span>if (value === null) {
-      return this.knex.whereNotNull(column);
+      return this.knex.whereNotNull(column)
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return this.knex.whereNot(column, value);</span>
-  };
+<span class="cstat-no" title="statement not covered" >    return this.knex.whereNot(column, value)</span>
+  }
 &nbsp;
-  inOperator = (column, value) =&gt; {
+  inOperator(column, value) {
     if (value.length) {
-      return this.knex.whereIn(column, value);
+      return this.knex.whereIn(column, value)
     }
 &nbsp;
-    return this.knex.whereNotNull(column).andWhere(column, null);
-  };
+    return this.knex.whereNotNull(column).andWhere(column, null)
+  }
 &nbsp;
-  likeOperator = (column, value) =&gt; {
-    return this.relationalOperator(column, "like", value);
-  };
+  likeOperator(column, value) {
+    return this.relationalOperator(column, 'like', value)
+  }
 &nbsp;
-  greaterThanOperator = (column, value) =&gt; {
-    return this.relationalOperator(column, "&gt;", value);
-  };
+  greaterThanOperator(column, value) {
+    return this.relationalOperator(column, '&gt;', value)
+  }
 &nbsp;
-  greaterThanOrEqualOperator = (column, value) =&gt; {
-    return this.relationalOperator(column, "&gt;=", value);
-  };
+  greaterThanOrEqualOperator(column, value) {
+    return this.relationalOperator(column, '&gt;=', value)
+  }
 &nbsp;
-  lowerThanOperator = (column, value) =&gt; {
-    return this.relationalOperator(column, "&lt;", value);
-  };
+  lowerThanOperator(column, value) {
+    return this.relationalOperator(column, '&lt;', value)
+  }
 &nbsp;
-  lowerThanOrEqualOperator = (column, value) =&gt; {
-    return this.relationalOperator(column, "&lt;=", value);
-  };
+  lowerThanOrEqualOperator(column, value) {
+    return this.relationalOperator(column, '&lt;=', value)
+  }
 &nbsp;
-  bind = (op, column, value) =&gt; {
+  bind(op, column, value) {
     const operators = {
       eq: this.equalOperator,
       not: this.notOperator,
@@ -292,17 +292,17 @@
       $gt: this.greaterThanOperator,
       $gte: this.greaterThanOrEqualOperator,
       $lt: this.lowerThanOperator,
-      $lte: this.lowerThanOrEqualOperator
-    };
-&nbsp;
-    const operator = operators[op];
-    if (operator) {
-      operator(column, value);
+      $lte: this.lowerThanOrEqualOperator,
     }
-  };
+&nbsp;
+    const operator = operators[op]
+    if (operator) {
+      operator.call(this, column, value)
+    }
+  }
 }
 &nbsp;
-module.exports = knex =&gt; new Operators(knex);
+module.exports = (knex) =&gt; new Operators(knex)
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -310,7 +310,7 @@ module.exports = knex =&gt; new Operators(knex);
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Mar 27 2020 09:58:36 GMT-0300 (Brasilia Standard Time)
+                at Fri Mar 27 2020 10:26:46 GMT-0300 (Brasilia Standard Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>
