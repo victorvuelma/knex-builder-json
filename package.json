@@ -1,42 +1,48 @@
 {
-	"name": "knex-builder-json",
-	"version": "0.1.0",
-	"main": "lib/index.js",
-	"repository": "https://github.com/victorvuelma/knex-builder-json",
-	"homepage": "https://github.com/victorvuelma/knex-builder-json",
-	"description": "Knex extension to build commands usign a JSON.",
-	"author": "victorvuelma",
-	"license": "MIT",
-	"scripts": {
-		"lint": "eslint **/*.js",
-		"lint:fix": "eslint --fix **/*.js",
-		"test": "jest test --detectOpenHandles --forceExit"
-	},
-	"keywords": [ "knex", "builder", "json" ],
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged",
-			"pre-push": "npm run test"
-		}
-	},
-	"lint-staged": {
-		"*.{js,ts,md}": [ "eslint --fix" ]
-	},
-	"dependencies": {
-		"knex": "^0.20.13"
-	},
-	"devDependencies": {
-		"@sucrase/jest-plugin": "^2.0.0",
-		"@types/jest": "^25.1.4",
-		"eslint": "^6.8.0",
-		"eslint-config-airbnb-base": "^14.1.0",
-		"eslint-config-prettier": "^6.10.1",
-		"eslint-plugin-import": "^2.20.1",
-		"eslint-plugin-prettier": "^3.1.2",
-		"husky": "^4.2.3",
-		"jest": "^25.2.2",
-		"lint-staged": "^10.0.9",
-		"prettier": "^2.0.2",
-		"sqlite3": "^4.1.1"
-	}
+  "name": "knex-builder-json",
+  "version": "0.1.2",
+  "main": "lib/index.js",
+  "repository": "https://github.com/victorvuelma/knex-builder-json",
+  "homepage": "https://github.com/victorvuelma/knex-builder-json",
+  "description": "Knex extension to build commands usign a JSON.",
+  "author": "victorvuelma",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint **/*.js",
+    "lint:fix": "eslint --fix **/*.js",
+    "test": "jest test --detectOpenHandles --forceExit"
+  },
+  "keywords": [
+    "knex",
+    "builder",
+    "json"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,md}": [
+      "eslint --fix"
+    ]
+  },
+  "dependencies": {
+    "knex": "^0.20.13"
+  },
+  "devDependencies": {
+    "@sucrase/jest-plugin": "^2.0.0",
+    "@types/jest": "^25.1.4",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.3",
+    "jest": "^25.2.2",
+    "lint-staged": "^10.0.9",
+    "prettier": "^2.0.2",
+    "sqlite3": "^4.1.1"
+  }
 }
