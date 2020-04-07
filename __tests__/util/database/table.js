@@ -2,8 +2,8 @@ const entities = require('../entities')
 
 const setupTables = async (knex) =>
   knex.schema
-    .dropTableIfExists('dummies')
-    .dropTableIfExists('foos')
+    .dropTable('dummies')
+    .dropTable('foos')
     .createTable('dummies', (t) => {
       t.integer('dummyId')
       t.string('dummyName')
@@ -21,11 +21,10 @@ const setupTables = async (knex) =>
       t.string('fooName')
     })
 
-const populateEntities = async (knex) => {
-  Object.entries(entities).forEach(async ([table, values]) => {
-    await knex(table).insert(Object.values(values))
-  })
-}
+const populateEntities = async (knex) =>
+  Object.entries(entities).map(async ([table, values]) =>
+    knex(table).insert(Object.values(values))
+  )
 
 const prepareDatabase = async (knex) => {
   await setupTables(knex)

@@ -1,20 +1,13 @@
 const { attachJsonQuery } = require('../../../lib')
 
 const knexClient = require('../../util/database/sqlite')
-const prepareDatabase = require('../../util/database/table')
 
 const { dummies } = require('../../util/entities')
 
 describe('Select tests', () => {
-  beforeAll(async () => {
-    attachJsonQuery()
+  beforeAll(() => attachJsonQuery())
 
-    return prepareDatabase(knexClient)
-  })
-
-  afterAll(async () => {
-    return knexClient.destroy()
-  })
+  afterAll(async () => knexClient.destroy())
 
   it('Should return dummies id and name of dummy B', async () => {
     const dummyQuery = await knexClient('dummies').jsonQuery({
@@ -95,6 +88,24 @@ describe('Select tests', () => {
       { valueA: 68, valueB: 16 },
       { valueA: 24, valueB: 23 },
       { valueA: 24, valueB: 56 },
+    ])
+  })
+
+  it('Should return dummies with limit 2', async () => {
+    const dummyQuery = await knexClient('dummies').jsonQuery({
+      select: ['dummyId', 'dummyName'],
+      limit: 2,
+    })
+
+    expect(dummyQuery).toMatchObject([
+      {
+        dummyId: dummies.dummyA.dummyId,
+        dummyName: dummies.dummyA.dummyName,
+      },
+      {
+        dummyId: dummies.dummyB.dummyId,
+        dummyName: dummies.dummyB.dummyName,
+      },
     ])
   })
 

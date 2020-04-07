@@ -1,20 +1,13 @@
 const { attachJsonQuery } = require('../../../lib')
 
 const knexClient = require('../../util/database/sqlite')
-const prepareDatabase = require('../../util/database/table')
 
 const { dummies } = require('../../util/entities')
 
 describe('Where tests', () => {
-  beforeAll(async () => {
-    attachJsonQuery()
+  beforeAll(() => attachJsonQuery())
 
-    return prepareDatabase(knexClient)
-  })
-
-  afterAll(async () => {
-    return knexClient.destroy()
-  })
+  afterAll(async () => knexClient.destroy())
 
   it('Should return dummy with dummyId 1', async () => {
     const dummyQuery = await knexClient('dummies').jsonQuery({

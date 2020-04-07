@@ -2,7 +2,12 @@ const Knex = require('knex')
 
 const { attachJsonQuery } = require('../../lib')
 
+const knexClient = require('../util/database/sqlite')
+const prepareDatabase = require('../util/database/table')
+
 describe('Knex Json Query', () => {
+  beforeAll(async () => prepareDatabase(knexClient))
+
   it('Should Attach to Knex', () => {
     const extend = jest.spyOn(Knex.QueryBuilder, 'extend')
 
