@@ -1,8 +1,11 @@
 const { attachJsonQuery } = require('../../../lib')
 
 const knexClient = require('../../util/database/sqlite')
+const prepareDatabase = require('../../util/database/table')
 
 describe('Group tests', () => {
+  beforeAll(async () => prepareDatabase(knexClient))
+
   beforeAll(() => attachJsonQuery())
 
   afterAll(async () => knexClient.destroy())

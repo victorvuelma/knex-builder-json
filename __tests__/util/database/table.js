@@ -2,8 +2,8 @@ const entities = require('../entities')
 
 const setupTables = async (knex) =>
   knex.schema
-    .dropTable('dummies')
-    .dropTable('foos')
+    .dropTableIfExists('dummies')
+    .dropTableIfExists('foos')
     .createTable('dummies', (t) => {
       t.integer('dummyId')
       t.string('dummyName')
