@@ -9,8 +9,8 @@
   "author": "victorvuelma",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint **/*.js",
-    "lint:fix": "eslint --fix **/*.js",
+    "lint": "eslint lib/**/*.js",
+    "lint:fix": "eslint --fix lib/**/*.js",
     "test": "jest test --detectOpenHandles --forceExit"
   },
   "keywords": [
